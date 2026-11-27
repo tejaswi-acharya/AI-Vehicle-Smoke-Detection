@@ -3,9 +3,9 @@ from pathlib import Path
 import torch
 
 from pytorch_YOLOv4.tool.darknet2pytorch import Darknet
-from cnn_model import load_cnn
+from ai.anpr.cnn_model import load_cnn
 
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parents[2]  # project root: ai/anpr/model_loader.py -> up 2
 MODELS = BASE_DIR / "models"
 
 PLATE_CFG = MODELS / "plate_detection" / "ANNPR.cfg"

@@ -4,8 +4,7 @@ import h5py
 import torch
 import torch.nn as nn
 
-CNN_H5 = Path(__file__).resolve().parent / "models/character_recognition/model_lenet_200_25.h5"
-
+CNN_H5 = Path(__file__).resolve().parents[2] / "models/character_recognition/model_lenet_200_25.h5"
 
 class CharCNN(nn.Module):
     """Same layers as model_lenet_200_25.json. Input: (N, 1, 32, 32)."""
