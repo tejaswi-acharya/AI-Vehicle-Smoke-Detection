@@ -2,7 +2,7 @@ from pathlib import Path
 
 import cv2
 
-from model_loader import load_models
+from ai.anpr.model_loader import load_models
 from pytorch_YOLOv4.tool.torch_utils import do_detect
 
 BASE = Path(__file__).resolve().parent

@@ -3,9 +3,9 @@ from pathlib import Path
 import cv2
 import torch
 
-from box_utils import remove_doubles, sort_reading_order
-from char_preprocess import preprocess_char
-from model_loader import load_models
+from ai.anpr.box_utils import remove_doubles, sort_reading_order
+from ai.anpr.char_preprocess import preprocess_char
+from ai.anpr.model_loader import load_models
 from pytorch_YOLOv4.tool.torch_utils import do_detect
 
 BASE = Path(__file__).resolve().parent

@@ -16,7 +16,7 @@ Optional settings (set them the same way before running):
     POLL_INTERVAL   seconds between frames        default 0.15
     SHOW_CONF       lowest confidence to draw     default 0.25
     TRIGGER_CONF    confidence that counts as smoke  default 0.50
-    MODEL_PATH      path to best.pt               default models\smoke_detection\best.pt
+    MODEL_PATH      path to best.pt               default ai\smoke_detection\best.pt
 Press q in the preview window to quit.
 """
 

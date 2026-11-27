@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 // Serve evidence images/clips saved by the Python pipeline
-app.use("/media", express.static(path.join(__dirname, "../../storage/incidents")));
+app.use("/media", express.static(path.join(__dirname, "../../storage/incident_clips")));
 
 app.get("/api/health", (req, res) => res.json({ status: "ok" }));
 app.use("/api/incidents", incidentRoutes);
