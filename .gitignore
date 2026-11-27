@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+.venv/
+
+# IDE
+.vscode/
+
+# Temporary files
+temp_frames/*
+outputs/*
+
+# Environment variables
+.env
+
+# Test artifacts
+.pytest_cache/
+
+# Trained model weights
+*.weights
+*.h5
