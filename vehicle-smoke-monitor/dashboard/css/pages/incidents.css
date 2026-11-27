@@ -1,0 +1,12 @@
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.table { width: 100%; border-collapse: collapse; background: var(--surface); }
+.table th, .table td { padding: 10px; border-bottom: 1px solid var(--border); text-align: left; }
+.table tbody tr { cursor: pointer; }
+.table tbody tr:hover { background: #f0f4ff; }
+.badge { padding: 3px 8px; border-radius: 12px; color: #fff; font-size: 0.8rem; text-transform: capitalize; }
+.badge-pending { background: var(--pending); }
+.badge-confirmed { background: var(--confirmed); }
+.badge-rejected { background: var(--rejected); }
+.badge-needs_inspection { background: var(--inspection); }
+.pagination { display: flex; align-items: center; gap: 12px; margin-top: 16px; }
+#message { margin-bottom: 12px; color: var(--muted); }

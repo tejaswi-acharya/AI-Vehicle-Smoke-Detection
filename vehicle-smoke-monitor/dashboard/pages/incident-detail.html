@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Incident Detail | Smoke Monitor</title>
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/pages/incidents.css" />
+  <link rel="stylesheet" href="../css/pages/incident-detail.css" />
+</head>
+<body>
+  <main class="container">
+    <a href="incidents.html" class="back">← Back to incidents</a>
+    <h1>Incident Detail</h1>
+    <p id="message"></p>
+
+    <div id="content" class="detail-grid" hidden>
+      <section class="card">
+        <h2>Evidence</h2>
+        <div id="evidence" class="evidence"></div>
+      </section>
+
+      <section class="card">
+        <h2>Information</h2>
+        <dl id="info" class="info"></dl>
+      </section>
+
+      <section class="card">
+        <h2>Review</h2>
+        <label for="plate">Plate number (correct it if the OCR is wrong)</label>
+        <input id="plate" />
+        <label for="notes">Notes</label>
+        <textarea id="notes" rows="3"></textarea>
+        <div class="actions">
+          <button data-status="confirmed" class="btn-confirm">Confirm</button>
+          <button data-status="needs_inspection" class="btn-inspect">Needs inspection</button>
+          <button data-status="rejected" class="btn-reject">Reject</button>
+        </div>
+        <p id="review-message"></p>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="../js/pages/incident-detail.js"></script>
+</body>
+</html>
