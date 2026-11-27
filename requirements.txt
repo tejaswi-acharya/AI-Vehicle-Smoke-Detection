@@ -1,0 +1,9 @@
+# DhuwaFic ANPR - Python 3.13
+# Install torch first, with CUDA 12.8 build:
+#   pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cu128
+# Then:
+#   pip install -r requirements.txt
+
+numpy==2.5.5
+opencv-python==5.1.0
+h5py==3.16.0
