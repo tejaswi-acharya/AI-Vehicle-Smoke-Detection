@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmokAI - Live monitoring</title>
+  <link rel="icon" href="../assets/images/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/pages/overview.css" />
+</head>
+<body>
+  <aside id="sidebar" class="sidebar"></aside>
+
+  <div class="main">
+    <header id="navbar" class="topbar"></header>
+
+    <main class="content">
+      <div class="page-head">
+        <h1>Every detection. In context. <span id="demoBadge" class="badge badge-demo" hidden>Demo workspace</span></h1>
+        <p>Monitor vehicle activity, identify visible smoke and review AI-generated evidence across assigned traffic locations.</p>
+      </div>
+
+      <section class="card" aria-labelledby="camHeading">
+        <div class="section-head"><h2 id="camHeading">Camera feeds</h2></div>
+        <div id="camTabs" class="tabs" role="group" aria-label="Cameras"></div>
+        <div id="player"></div>
+      </section>
+
+      <div class="two-col">
+        <section class="card" aria-labelledby="tlHeading">
+          <div class="section-head">
+            <h2 id="tlHeading">Detection timeline</h2>
+            <button type="button" class="btn btn-ghost" id="demoToggle">Show demo data</button>
+          </div>
+          <div id="timeline"></div>
+        </section>
+        <section class="card" id="evidence"></section>
+      </div>
+
+      <section class="card" id="tester" aria-label="Test AI Detection"></section>
+    </main>
+  </div>
+
+  <script type="module" src="../js/pages/overview.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Live monitoring | SmokAI</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  
+</head>
+<body>
+  <aside id="sidebar"></aside>
+  <div class="main">
+    <header id="topbar"></header>
+    <main class="content">
+      <div class="page-head"><h1>Every detection. In context.</h1><span class="tag">DEMO WORKSPACE</span></div>
+
+      <div class="grid-live">
+        <section class="panel">
+          <div class="panel-head"><h2>Camera feeds</h2><span class="pill">● <span id="online"></span></span></div>
+          <div class="tabs" id="cam-tabs"></div>
+
+          <div class="feed">
+            <span class="live" id="live-badge">● LIVE</span>
+            <span class="feed-label" id="feed-label"></span>
+            <div id="feed-media"></div>
+          </div>
+
+          <div class="feed-bar">
+            <button class="icon-btn" id="pause" title="Pause updates">❚❚</button>
+            <b id="bar-state">LIVE</b>
+            <div class="progress"><div id="bar-fill"></div></div>
+            <span id="bar-time"></span>
+          </div>
+
+          <h2 class="mt">Detection timeline</h2>
+          <div class="timeline" id="timeline"></div>
+        </section>
+
+        <aside class="panel white" id="evidence"></aside>
+      </div>
+
+      <p class="footer">SmokAI / Nepal</p>
+    </main>
+  </div>
+  <script type="module" src="../js/pages/live.js"></script>
+</body>
+</html>

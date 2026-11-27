@@ -1,0 +1,10 @@
+/* Review status badges (shared by later pages) */
+.status { display: inline-flex; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+.status-pending { background: var(--warning-bg); color: var(--warning); }
+.status-verified { background: var(--success-bg); color: var(--success); }
+.status-dismissed { background: #E9EEF4; color: #4A5D73; }
+.status-inspection { background: var(--blue-light); color: var(--blue-primary); }
+
+.btn-danger-ghost { background: #fff; color: var(--danger); border-color: #F5C6C0; }
+.btn-danger-ghost:hover:not(:disabled) { background: var(--danger-bg); }
+.alert-success { background: var(--success-bg); color: var(--success); border: 1px solid #BFE5D2; }

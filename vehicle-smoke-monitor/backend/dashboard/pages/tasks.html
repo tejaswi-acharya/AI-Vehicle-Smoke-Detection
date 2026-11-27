@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Officer tasks | SmokAI</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <aside id="sidebar"></aside>
+  <div class="main">
+    <header id="topbar"></header>
+    <main class="content">
+      <div class="page-head"><h1>Turn detections into action.</h1></div>
+      <div class="grid-tasks">
+        <section class="panel white">
+          <h2>Review queue</h2><p class="muted">Incidents waiting for an officer decision</p>
+          <div class="tabs small" id="range-tabs"></div>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th>Incident / vehicle</th><th>Camera</th><th>Date &amp; time</th><th>Status</th><th>Action</th></tr></thead>
+              <tbody id="queue"></tbody>
+            </table>
+          </div>
+          <div class="note"><b>i Active queue</b><br>Shows pending incidents from the last 7 days.
+            Older and completed incidents are in Recorded incidents.</div>
+        </section>
+        <aside class="panel white" id="detail"><p class="muted">Select an incident to review.</p></aside>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="../js/pages/tasks.js"></script>
+</body>
+</html>

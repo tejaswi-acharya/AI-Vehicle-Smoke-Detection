@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="SmokAI logo placeholder">
+  <path d="M32 4l22 8v18c0 14-9.5 24-22 30C19.500 54 10 44 10 30V12z" fill="#2472BD"/>
+  <path d="M32 9l17 6.200V30c0 11-7.200 19.200-17 24.500C22.200 49.200 15 41 15 30V15.200z" fill="#174B7E"/>
+  <circle cx="32" cy="29" r="9" fill="none" stroke="#fff" stroke-width="3"/>
+  <circle cx="32" cy="29" r="3.200" fill="#fff"/>
+  <path d="M22 44h20" stroke="#8FC1F0" stroke-width="3" stroke-linecap="round"/>
+</svg>
