@@ -1,0 +1,11 @@
+﻿data/
+models/weights/*.pt
+!models/weights/smoke_best.pt
+storage/incidents/*
+storage/logs/*
+.env
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+node_modules/

@@ -1,0 +1,25 @@
+.back { display: inline-block; margin-bottom: 12px; color: var(--primary); text-decoration: none; }
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.detail-grid .card:first-child { grid-column: 1 / -1; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+.card h2 { font-size: 1.1rem; margin-bottom: 12px; }
+
+.evidence { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.evidence img, .evidence video { width: 100%; border-radius: 6px; background: #000; }
+.evidence figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+.no-media { height: 140px; display: flex; align-items: center; justify-content: center;
+            background: var(--bg); border: 1px dashed var(--border); border-radius: 6px; color: var(--muted); }
+
+.info { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; }
+.info dt { color: var(--muted); }
+.info dd { text-transform: capitalize; }
+
+.card label { display: block; font-size: 0.9rem; margin: 10px 0 4px; }
+.card input, .card textarea { width: 100%; font: inherit; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.btn-confirm { background: var(--confirmed); }
+.btn-inspect { background: var(--inspection); }
+.btn-reject { background: var(--rejected); }
+#review-message { margin-top: 10px; color: var(--muted); }
+
+@media (max-width: 700px) { .detail-grid { grid-template-columns: 1fr; } }

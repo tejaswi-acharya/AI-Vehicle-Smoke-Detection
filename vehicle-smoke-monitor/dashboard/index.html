@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eef6ff">
+  <title>SmokAI | Vehicle Smoke Monitor</title>
+  <link rel="stylesheet" href="./css/smokai.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+  <script src="./js/app.js" defer></script>
+</head>
+<body>
+  <div class="login" id="login">
+    <section class="login-info">
+      <div class="brand"><strong>SmokAI</strong><small>VEHICLE SMOKE MONITOR</small></div>
+      <div class="info-body">
+        <span class="pill">INCIDENT REVIEW WORKSPACE</span>
+        <h1>Every detection.<br>In context.</h1>
+        <p>Review smoke detections, associated vehicles, number-plate results, and saved camera evidence.</p>
+        <ul class="feature-list">
+          <li><b>Camera evidence</b><small>Review the latest snapshot saved by the detection pipeline</small></li>
+          <li><b>Human-reviewed incidents</b><small>Confirm, reject, or flag a vehicle for inspection</small></li>
+        </ul>
+      </div>
+      <small class="muted">Visible smoke is an indicator, not an emissions test.</small>
+    </section>
+
+    <div class="login-side">
+      <form class="login-form" id="loginForm">
+        <h2>Open workspace</h2>
+        <p class="muted">Choose a display name and an observed camera location.</p>
+        <div class="field">
+          <label for="oName">Display name</label>
+          <input id="oName" name="officerName" placeholder="Your name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="oLoc">Location filter</label>
+          <select id="oLoc" name="location">
+            <option value="">All locations</option>
+          </select>
+        </div>
+        <div class="err" id="loginErr" role="alert" hidden>Enter a display name to continue.</div>
+        <button class="btn primary" type="submit">Open monitoring workspace</button>
+        <small class="muted center">Display name only; this screen does not authenticate users.</small>
+      </form>
+    </div>
+  </div>
+
+  <div class="app" id="app" hidden>
+    <aside class="sidebar">
+      <div class="brand"><strong>SmokAI</strong><small>VEHICLE SMOKE MONITOR</small></div>
+      <label class="loc"><span class="pin" aria-hidden="true">&#9679;</span>
+        <select id="loc" aria-label="Filter by location">
+          <option value="">All locations</option>
+        </select>
+      </label>
+      <div class="ws">WORKSPACE</div>
+      <nav aria-label="Workspace pages">
+        <button class="nav active" type="button" data-view="live" aria-current="page">Monitoring</button>
+        <button class="nav" type="button" data-view="tasks">Review queue <span class="badge" id="navCount">0</span></button>
+        <button class="nav" type="button" data-view="incidents">Recorded incidents</button>
+      </nav>
+      <div class="side-bottom">
+        <div class="sys"><span class="dot"></span> Incident API<small id="connectionStatus">Connecting…</small></div>
+        <button class="nav plain" type="button" id="help">Review guidance</button>
+        <button class="nav plain" type="button" id="logout">Close workspace</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="crumbs">Vehicle Smoke Monitor <span>/</span> <b id="crumb">Monitoring</b></div>
+        <div class="clock" id="clock" aria-live="off"></div>
+        <div class="officer"><span class="shield" aria-hidden="true">&#9673;</span><span><b id="officerName">Reviewer</b><small id="division">All locations</small></span></div>
+      </header>
+      <p class="err" id="appError" role="alert" hidden></p>
+
+      <section class="view" id="view-live">
+        <div class="heading"><h1>Detection monitoring</h1><span class="pill" id="stageMode">LATEST SAVED EVIDENCE · NOT LIVE VIDEO</span></div>
+        <div class="live-grid">
+          <div class="card feeds">
+            <div class="row between"><h3>Observed cameras</h3><span class="pill online" id="cameraFeedStatus"><i class="dot"></i> Checking camera settings</span></div>
+            <div class="tabs4" id="camTabs"></div>
+            <div class="stage" id="stage">
+<img id="liveCameraImage" class="live-camera" src="http://localhost:5001/annotated_feed" alt="Live detection stream">              <img id="stageImage" alt="Latest saved smoke-detection evidence" hidden>
+              <span class="live-tag" id="stageTag">LATEST EVIDENCE</span>
+              <span class="cam-tag" id="camTag">No camera activity</span>
+              <div class="stage-message" id="stageMessage"><strong>No incidents recorded yet</strong><small>Set CAMERA_SOURCE in the project-root .env to view your IP Webcam stream.</small></div>
+            </div>
+            <div class="player"><span aria-hidden="true">&#9679;</span><small id="playerStatus">CAPTURED</small><div class="bar"><i id="captureProgress" style="width:0%"></i></div><span id="cameraTime">--:--</span></div>
+            <h3 class="tl-title">Recent activity</h3>
+            <div id="timeline"><p class="muted">Loading incidents…</p></div>
+          </div>
+
+          <aside class="card evidence">
+            <span class="pill amber" id="latestStatus">NO INCIDENT</span>
+            <h2>Latest vehicle evidence</h2>
+            <small class="muted" id="latestIncidentId">Waiting for a saved incident</small>
+            <div class="plate-box"><small id="plateCaption">NUMBER PLATE</small><strong id="latestPlate">Unread</strong></div>
+            <div class="row between small"><span>Smoke confidence</span><b class="blue" id="latestConfidence">—</b></div>
+            <div class="progress"><i id="confidenceBar" style="width:0%"></i></div>
+            <dl>
+              <dt>Location</dt><dd id="evLoc">—</dd>
+              <dt>Camera</dt><dd id="evCam">—</dd>
+              <dt>Detected at</dt><dd id="evTime">—</dd>
+              <dt>Vehicle association</dt><dd id="evAssociation">—</dd>
+            </dl>
+            <div class="notice"><b>Review required</b><p>Smoke-to-vehicle matching is a visual proximity estimate. Confirm evidence before recording an outcome.</p></div>
+            <button class="btn primary" id="assign" type="button" disabled>Review incident</button>
+            <button class="btn outline" id="falseDet" type="button" disabled>Reject incident</button>
+          </aside>
+        </div>
+        <p class="muted" id="liveMessage" role="status"></p>
+      </section>
+
+      <section class="view" id="view-tasks" hidden>
+        <div class="heading"><h1>Incident review queue</h1><span class="pill">PENDING RECORDS</span></div>
+        <div class="tasks-grid">
+          <div class="card">
+            <div class="row between"><div><h3>Pending incidents</h3><small class="muted" id="queueDiv">All locations</small></div><span class="select-pill" id="queueCount">0 pending</span></div>
+            <div class="tabs3" id="rangeTabs"></div>
+            <div class="table-wrap">
+              <table class="tbl">
+                <thead><tr><th>Incident / plate</th><th>Camera</th><th>Date &amp; time</th><th>Status</th><th>Action</th></tr></thead>
+                <tbody id="taskBody"></tbody>
+              </table>
+            </div>
+            <p class="muted" id="taskMessage" role="status"></p>
+          </div>
+          <aside class="card detail" id="detail"><p class="muted">Select an incident to review its evidence.</p></aside>
+        </div>
+      </section>
+
+      <section class="view" id="view-incidents" hidden>
+        <div class="card wide">
+          <div class="row between top">
+            <div><h2>Recorded incidents</h2><small class="muted">Filter and review detections saved by the pipeline.</small></div>
+            <button class="btn primary export" id="export" type="button">Export current page</button>
+          </div>
+          <div class="filters">
+            <input id="search" class="search" placeholder="Search plate number" aria-label="Search by plate number">
+            <select id="fCam" class="select-pill big" aria-label="Filter by camera"><option value="">All cameras</option></select>
+            <select id="fStatus" class="select-pill big" aria-label="Filter by review status">
+              <option value="">All statuses</option>
+              <option value="pending">Pending</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="needs_inspection">Needs inspection</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table class="tbl inc">
+              <thead><tr><th>Evidence</th><th>Vehicle / plate</th><th>Camera / location</th><th>Date &amp; time</th><th>Smoke confidence</th><th>Review status</th><th>Action</th></tr></thead>
+              <tbody id="incBody"></tbody>
+            </table>
+          </div>
+          <div class="row between pager"><small class="muted" id="showing"></small>
+            <div class="pager-controls"><button class="pg" id="prevPage" type="button">‹ Previous</button><span id="pageNumber"></span><button class="pg" id="nextPage" type="button">Next ›</button></div>
+          </div>
+          <p class="muted" id="incidentMessage" role="status"></p>
+        </div>
+      </section>
+      <footer class="page-foot">SmokAI · Smoke detections require human review</footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

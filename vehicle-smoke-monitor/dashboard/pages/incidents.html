@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Incidents | Smoke Monitor</title>
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/pages/incidents.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Detected Incidents</h1>
+
+    <form id="filters" class="filters">
+      <select name="status">
+        <option value="">All statuses</option>
+        <option value="pending">Pending</option>
+        <option value="confirmed">Confirmed</option>
+        <option value="rejected">Rejected</option>
+        <option value="needs_inspection">Needs inspection</option>
+      </select>
+      <select name="vehicleType">
+        <option value="">All vehicles</option>
+        <option value="bus">Bus</option>
+        <option value="truck">Truck</option>
+        <option value="car">Car</option>
+        <option value="motorcycle">Motorcycle</option>
+      </select>
+      <input name="plate" placeholder="Plate number" />
+      <button type="submit">Filter</button>
+    </form>
+
+    <p id="message"></p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Date &amp; time</th>
+          <th>Location</th>
+          <th>Vehicle</th>
+          <th>Plate</th>
+          <th>Smoke</th>
+          <th>Confidence</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="incident-rows"></tbody>
+    </table>
+
+    <div class="pagination">
+      <button id="prev">Previous</button>
+      <span id="page-info"></span>
+      <button id="next">Next</button>
+    </div>
+  </main>
+
+  <script type="module" src="../js/pages/incidents.js"></script>
+</body>
+</html>
